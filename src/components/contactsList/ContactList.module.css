@@ -1,0 +1,13 @@
+.noMatchesVessage,
+ .listOfContacts{
+    width: 600px;
+    height: 600px;
+    text-align: center;
+}
+
+.listOfContacts {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+}
