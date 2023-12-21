@@ -33,13 +33,4 @@ const store = configureStore({
     }),
 })
 
-let persistor = persistStore(store)
-
-ReactDOM.render(
-  <Provider store={store}>
-    <PersistGate loading={null} persistor={persistor}>
-      <App />
-    </PersistGate>
-  </Provider>,
-  document.getElementById('root')
-)
+let persistor = persistStore(store);
