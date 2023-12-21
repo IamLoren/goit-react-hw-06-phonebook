@@ -4,9 +4,11 @@ import { useSelector } from 'react-redux';
 
 export const ContactsList = ({children }) => {
   const contacts = useSelector((state) => state.contacts);
+  console.log(contacts)
   const filter = useSelector((state) => state.filter);
+  console.log(filter)
   const filteredContacts = contacts.filter((contact) =>
-    contact.name.toLowerCase().includes(filter.toLowerCase())
+    contact.name.toLowerCase().includes(filter?.toLowerCase() || '')
   );
 
     return ( 
@@ -16,7 +18,7 @@ export const ContactsList = ({children }) => {
     filteredContacts.length === 0 
     ? (<p className={s.noMatchesVessage}>No contacts match your search</p>)
     : ( <ul className={s.listOfContacts}>
-      {filteredContacts.map(({name, number, id}) => (
+      {filteredContacts?.map(({name, number, id}) => (
         <ContactItem key={id} name={name} number={number} id={id}/>
       ))}
     </ul>)

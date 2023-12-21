@@ -1,3 +1,4 @@
+// https://redux-toolkit.js.org/usage/usage-guide#use-with-redux-persist
 import { configureStore } from '@reduxjs/toolkit'
 import {
   persistStore,
