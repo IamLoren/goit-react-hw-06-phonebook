@@ -1,32 +1,33 @@
 import { useState } from 'react';
-import { nanoid } from 'nanoid';
+import { useDispatch, useSelector } from 'react-redux';
+import { addContact } from '../../redux/contacts/contactsSlice.js';
 import s from './InputField.module.css';
 
+export const InputField = () => {
+  const dispatch = useDispatch();
+  const contacts = useSelector((state) => state.contacts);
 
-export const InputField =({contacts, updateContactState}) => {
-const [name, setName] = useState('');
-const [number, setNumber] = useState('');
- 
-const  handleValueChange = (event) => {
-  if (event.target.name === 'number') {
-    setNumber(event.target.value)
-  }
-  if (event.target.name === 'name') {
-    setName(event.target.value)
-  }
+  const [name, setName] = useState('');
+  const [number, setNumber] = useState('');
+
+  const handleValueChange = (event) => {
+    if (event.target.name === 'number') {
+      setNumber(event.target.value);
+    }
+    if (event.target.name === 'name') {
+      setName(event.target.value);
+    }
   };
 
-const  createContact = event => {
+  const createContact = (event) => {
     event.preventDefault();
 
-    const newContact = { name, number, id: nanoid(5) };
-
-    if (contacts.some(contact => contact.name === name)) {
+    if (contacts.some((contact) => contact.name === name)) {
       alert(`Contact with the name ${name} already exists!`);
       return;
     }
 
-    updateContactState(newContact);
+    dispatch(addContact({ name, number }));
 
     setNumber('');
     setName('');
