@@ -7,17 +7,18 @@ export const InputField = () => {
   const contacts = useSelector(state => state.contacts);
 
   const createContact = event => {
-    event.preventDefault();
+    event.preventDefault(); 
     const name = event.target.elements.name.value;
-    console.log(name)
     const number = event.target.elements.number.value;
-    console.log(number)
+    event.target.elements.name.value ='';
+    event.target.elements.number.value = '';
     if (contacts.some(contact => contact.name === name)) {
       alert(`Contact with the name ${name} already exists!`);
       return;
     }
 
     dispatch(addContact({ name, number }));
+   
   };
 
   return (
